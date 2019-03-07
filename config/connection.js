@@ -1,3 +1,5 @@
+// PASSED CHECK
+
 // Require mysql
 var mysql = require("mysql");
 require("dotenv").config();
@@ -15,11 +17,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId + "\n");
-    // startApp();
 });
-
-// REFERENCE B-AMAZON HERE IN .JS FILE FOR MORE JAVASCRIPT LOGIC
-// PLACE UNKNOWN.
 
 // Export connection
 module.exports = connection;
