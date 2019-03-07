@@ -1,10 +1,12 @@
+-- SHOULD BE CORRECT
 
 INSERT INTO burgers (burger_name, devoured)
-VALUES ("Whopper", " ");
+VALUES ("Whopper", false);
 
 INSERT INTO burgers (burger_name, devoured)
-VALUES ("Big Mac", " ");
+VALUES ("Big Mac", false);
 
 INSERT INTO burgers (burger_name, devoured)
-VALUES ("Baconader", " ");
+VALUES ("Baconader", false);
 
+SELECT * FROM burgers; 

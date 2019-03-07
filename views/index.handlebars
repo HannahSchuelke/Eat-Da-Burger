@@ -1,6 +1,81 @@
+{{!-- CHANGE TITLE --}}
+
 {{!-- Setup the index.handlebars to have the template
  that Handlebars can render onto. --}}
- 
 {{!-- 
  Create a button in index.handlebars that will 
  submit the user input into the database. --}}
+
+<h1>Eat Da Burgers!</h1>
+<br>
+
+<div id='available'>
+    <h2>Burgers Available to Eat:</h2>
+    <ul>
+        {{#each burgers}} {{#unless this.devoured}}
+        <li>
+            {{this.item_id}}. {{this.burger_name}}
+            <button data-id={{this.item_id}} class="btn btn-warning" id="devoured">Eat Me!</button>
+        </li>
+        {{/unless}} {{/each}}
+    </ul>
+</div>
+<div id='devoured'>
+    <h2>Burgers Already Devoured: </h2>
+
+    <ul>
+        {{#each burgers}} {{#if this.devoured}}
+        <li>
+            {{this.item_id}}. {{this.burger_name}}
+        </li>
+        {{/if}} {{/each}}
+    </ul>
+</div>
+
+<div id='add'>
+    <h2>Add a Burger: </h2>
+
+    <form class="create-update-form">
+        <div class="form-group">
+            <label for="dab">Burger Name:</label>
+            <input type="text" id="dab" name="burger_name">
+        </div>
+        <button id="newBurger" class="btn btn-primary" type="submit">Add Burger</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+     
+    $("#newBurger").on("click", function () {
+        console.log("the button is clicked");
+        var burger = $("#dab").val();
+        var requestBody = {
+            burger_name: burger
+        }
+        $.ajax("/api/burger", {
+            type: "POST",
+            data: requestBody,
+        })
+            .then(function () {
+                location.reload();
+            });
+    });
+
+        $("#devoured").on("click", function () {
+        console.log("eat it");
+
+        var id = $(this).data("id");
+        console.log("the id in frontend request is " + id)
+
+       
+        $.ajax("/api/" + id, {
+            type: "PUT",
+        })
+            .then(function () {
+                location.reload();
+            });
+    });
+
+
+
+</script>

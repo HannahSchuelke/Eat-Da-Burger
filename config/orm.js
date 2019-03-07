@@ -2,53 +2,40 @@
 var connection = require('../config/connection.js');
 
 
-// In the orm.js file, create the methods that will
-//  execute the necessary MySQL commands in the controllers. 
-//  These are the methods you will need to use in order to 
-//  retrieve and store data in your database.
-
-// In the orm.js file, create the methods 
-// that will execute the necessary MySQL commands 
-// in the controllers. These are the methods you will 
-// need to use in order to retrieve and store data in your
-//  database.
-
-// selectAll()
-// insertOne()
-// updateOne()
-
 var orm = {
 
-    selectAll: function (cb) {
+// Select all method to retrieve data from mysql database
+    selectAll: function (callback) {
         var queryString = "SELECT * FROM burgers";
         connection.query(queryString, function (err, result) {
             if (err) {
                 throw err;
             }
-            cb(result);
+            callback(result);
         });
     },
-
-    insertOne: function (burger, cb) {
-        var queryString = "INSERT INTO burgers (burger_name) VALUES ?";
+// Insert one method to retrieve data from mysql database
+    insertOne: function (burger, callback) {
+        var queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
         connection.query(queryString, [burger], function (err, result) {
             if (err) {
                 throw err;
             }
-            cb(result);
+            callback(result);
         });
     },
-
-    updateOne: function (id, cb) {
-        var queryString = "UPDATE burgers SET devoured = true WHERE id = ?";
+// Update one method to retrieve data from mysql database
+    updateOne: function (id, callback) {
+        var queryString = "UPDATE burgers SET devoured = true WHERE item_id = ?";
 
         connection.query(queryString, [id], function (err, result) {
             if (err) {
                 throw err;
             }
-            cb(result);
+            callback(result);
         });
     }
 };
 
+// Export ORM
 module.exports = orm;

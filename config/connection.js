@@ -1,4 +1,4 @@
-// PASSED CHECK
+// GOOD
 
 // Require mysql
 var mysql = require("mysql");

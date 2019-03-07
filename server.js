@@ -1,6 +1,9 @@
+// GOOD
+
 // Declarations
 var express = require("express");
-// var path = require("path");
+var expressHand = require("express-handlebars");
+var routes = require("./controllers/burgers_controller");
 
 // Sets up the Express App
 var app = express();
@@ -10,9 +13,16 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes to html & api
-// require("./app/routing/htmlRoutes")(app);
-// require("./app/routing/apiRoutes")(app);
+
+// Express view engine
+app.engine('handlebars', expressHand({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+// / route
+app.use("/", routes);
+// app.get('/', function (req, res) {
+//     res.render('home');
+// });
 
 // Listener
 app.listen(PORT, function() {
