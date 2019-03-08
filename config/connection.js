@@ -7,6 +7,7 @@ require("dotenv").config();
 // -- Connecting to MySQL, settings
 var connection;
 console.log(process.env.JAWSDB_URL);
+console.log("hello");
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
