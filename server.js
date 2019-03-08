@@ -9,6 +9,14 @@ var routes = require("./controllers/burgers_controller");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+// connect for heroku
+// var JAWSDB_URL = process.env.JAWSDB_URL;
+// var HOST = process.env.HOST || localhost;
+// var USER = process.env.USER || root;
+// var PASSWORD = process.env.HOST || root;
+// var DB = process.env.DB || burgers_db;
+
+
 // Sets up the Express app to handle data parsing (if not, req.body is always undefined)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
